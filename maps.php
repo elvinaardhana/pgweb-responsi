@@ -24,7 +24,7 @@
         /* Tampilan peta fullscreen */
         #map {
             height: 500px;
-            margin-bottom: 20px;
+            
             color: white;
             text-align: center;
             margin-left: 200px;
@@ -36,30 +36,31 @@
             background-image: url(foto/forest.jpg);
             color: white;
             text-align: center;
+            
         }
 
         header {
             padding: 2em;
           
-            padding: 70px 0;
+            padding: 50px 0;
             text-align: center;
             color: #ffffff;
-     
-     
-      font-family: 'Courier New', Courier, monospace;
+            font-family: 'Courier New', Courier, monospace;
+        animation: fade-in;;}
             
-        }
+        
 
         section {
             padding: 40px 0;
         }
 
         .card {
-            margin-bottom: 20px;
-            border-radius: 10px;
+            
+            border-radius: 0px;
             /* Sudut border card */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+        
 
         .card-title.text-white,
         .card-text.text-white {
@@ -68,24 +69,17 @@
 
         footer {
             color: white;
+            margin-top: 0;
+
         }
 
-        form {
-            margin: 0 auto;
-            width: 50%;
-        }
+      
 
         label {
             color: white;
         }
 
-        input {
-            margin-bottom: 10px;
-        }
-
-        #informasi {
-            color: white;
-        }
+      
 
         .custom-btn {
             background-color: white;
@@ -108,6 +102,7 @@
         .fade-in {
             animation: fadeIn 2s ease-in-out; /* Sesuaikan durasi dan fungsi waktu animasi sesuai kebutuhan Anda */
         }
+       
     </style>
 </head>
 
@@ -124,7 +119,7 @@
               <a class="nav-link active" href="index.html">Home</a>
               <a class="nav-link" href="legend.html">Legend's</a>
               <a class="nav-link" href="maps.php">Maps</a>
-              <a class="nav-link" href="#">Info</a>
+              <!-- <a class="nav-link" href="#">Info</a> -->
           </nav>
       </div>
 
@@ -132,6 +127,7 @@
             
             <p>A digital portal inviting you to explore the timeless allure of myths and folk tales <br>that have shaped
                 societies and inspired imaginations throughout history.<br> Enjoy your fantasy journey!</p>
+                <a href="https://indonesiakaya.com/" class="btn btn-secondary">Click this link to see more</a>
         </header>
         
         <!-- Map Container -->
@@ -259,7 +255,34 @@
 
 
 
+        
     </script>
+<footer>
+            <div class="container">
+                <div id="identitas">
+                    <div class="card text-white bg-dark">
+                        <div class="card-body">
+                            <h5 class="card-title">Web Created by [Elvina Ardhana]</h5>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Last updated 3 mins ago</small>
+                        </div>
+                    </div>
+
+                    <div class="card text-white bg-dark">
+                        <div class="card-body">
+                            <h5 class="card-title">Follow Us</h5>
+                            <p class="card-text">Stay connected on social media</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="https://www.instagram.com/elvinaardhana/" class="btn btn-primary">Instagram</a>
+                            <a href="elvinaardhana22@gmail.com" class="btn btn-info">E-mail</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
 
 
 </body>
