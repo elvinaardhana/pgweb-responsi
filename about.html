@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Cover Page</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: rgb(203, 214, 225);
+        }
+        .masthead {
+            margin-bottom: 2em;
+        }        
+
+        .mastfoot {
+            margin-top: 2em;
+            margin-bottom: 2em;
+        }
+        .inner2{
+           padding: 2em;
+            width: auto;
+            height: 15em;
+            font-family: 'Courier New', Courier, monospace;
+            text-shadow: 1px 1px 2px rgb(0, 0, 0);
+            
+        }
+        body {
+            background-image: url(foto/cover.jpg); /* Ganti 'background.jpg' dengan nama file gambar yang sesuai */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #fff;
+        }
+        heading{
+            padding: 2em;
+            font-weight: bold;
+        }
+        .nav-link {
+        color: #fff; /* Change this to the desired text color */
+    }
+    /* Animasi fade-in */
+    @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 2s ease-in-out; /* Sesuaikan durasi dan fungsi waktu animasi sesuai kebutuhan Anda */
+        }
+       
+    </style>
+</head>
+<body class="text-center">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="masthead mb-auto">
+            <div class="inner2">
+                <nav class="nav nav-masthead justify-content-center">
+                    <a class="nav-link active" href="index.html">Home</a>
+                    <a class="nav-link" href="legend.html">Legend's</a>
+                    <a class="nav-link" href="maps.php">Maps</a>
+                    <a class="nav-link" href="#">Info</a>
+                </nav>
+            </div>
+        </header>
+
+        <main role="main" class="inner2 fade-in">
+    
+            <p class="lead">Website ini dibuat untuk melestarikan kebudayaan lokal yang ada di seluruh daerah Indonesia. </p>
+            <p class="lead">
+                <a href="index.html" class="btn btn-lg btn-secondary">Home</a>
+            </p>
+        </main>
+
+        <footer class="mastfoot fade-in">
+            <div class="inner3">
+                <p>by "Elvina Ardhana"</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS and dependencies (jQuery, Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  
+</body>
+</html>

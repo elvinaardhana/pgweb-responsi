@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Indosky: Observatorium</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" ">
+
+    <!-- Bootstrap CSS -->
+    <link rel=" stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <!-- Style Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+    <!-- Search CSS Library -->
+    <link rel="stylesheet" href="assets/plugins/leaflet-search/leaflet-search.css" />
+
+    <!-- Geolocation CSS Library for Plugin -->
+    <link rel="stylesheet"
+        href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.css" />
+
+    <!-- Leaflet Mouse Position CSS Library -->
+    <link rel="stylesheet" href="assets/plugins/leaflet-mouseposition/L.Control.MousePosition.css" />
+
+    <!-- Leaflet Measure CSS Library -->
+    <link rel="stylesheet" href="assets/plugins/leaflet-measure/leaflet-measure.css" />
+
+    <!-- EasyPrint CSS Library -->
+    <link rel="stylesheet" href="assets/plugins/leaflet-easyprint/easyPrint.css" />
+
+    <!-- Marker Cluster -->
+    <link rel="stylesheet" href="assets/plugins/leaflet-markercluster/MarkerCluster.css">
+    <link rel="stylesheet" href="assets/plugins/leaflet-markercluster/MarkerCluster.Default.css">
+
+    <!--Routing-->
+    <link rel="stylesheet" href="assets/plugins/leaflet-routing/leaflet-routing-machine.css" />
+
+    <!-- Custom CSS for Map Container -->
+    <style>
+        #map {
+            height: 500px;
+            margin-bottom: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        body {
+            background-color: #1c2834;
+            color: white;
+            text-align: center;
+        }
+
+        header {
+            background-color: #1c2834;
+            color: white;
+            padding: 70px 0;
+            text-align: center;
+        }
+
+        section {
+            padding: 40px 0;
+        }
+
+        .card {
+            margin-bottom: 20px;
+        }
+
+        .card-title.text-white,
+        .card-text.text-white {
+            color: white !important;
+        }
+
+        footer {
+            color: white;
+        }
+
+        form {
+            margin: 0 auto;
+            width: 50%;
+        }
+
+        label {
+            color: white;
+        }
+
+        input {
+            margin-bottom: 10px;
+        }
+
+        #informasi {
+            color: white;
+        }
+
+        .custom-btn {
+            background-color: white;
+            color: black;
+            border: 1px solid black;
+            /* Optional: add a border to make it visually distinct */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Header Section -->
+        <header>
+            <h1>Observatorium dan Planetarium di Indonesia</h1>
+            <p>Menampilkan persebaran lokasi observatorium, planetarium, dan lokasi yang cocok untuk astrofotografi</p>
+        </header>
+        <!-- Map Container -->
+        <div id="map"></div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="text-center">
+        <p>&copy; Veronica Tia Ningrum | 2023 </p>
+    </footer>
+
+    <h3>Tambahkan data planetarium, observatorium, atau astrofotografi yang kamu ketahui</h3>
+    </br>
+
+    <!-- <h4>Form Input</h4>
+
+    <form action="input.php" onsubmit="return validateForm()" method="post">
+        <label for="kecamatan">Kecamatan:</label><br>
+        <input type="text" id="kecamatan" name="kecamatan" value=""><br>
+
+        <label for="kategori">Kategori:</label><br>
+        <input type="text" id="longitude" name="longitude" value=""><br>
+
+        <label for="lokasi">Lokasi:</label><br>
+        <input type="text" id="latitude" name="latitude" value=""><br>
+
+        <label for="lintang">Lintang:</label><br>
+        <input type="text" id="luas" name="luas" value=""><br>
+
+        <label for="bujur">Bujur:</label><br>
+        <input type="text" id="jumlah_penduduk" name="jumlah_penduduk" value=""><br><br>
+
+        <input type="submit" value="Submit" style="background-color: white; color: black;">
+
+    </form> -->
+
+    <p id="informasi"></p>
+
+    <!-- <p><a class="btn btn-secondary custom-btn" href="index.php">Tampilkan data</a></p> -->
+
+    <script>
+        function validateForm() {
+            // Your validation logic
+            // ...
+            document.getElementById("informasi").innerHTML = "Validation result";
+        }
+    </script>
+
+    <!-- Bootstrap JS and Dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap and Leaflet JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <!-- Search JavaScript Library -->
+    <script src="assets/plugins/leaflet-search/leaflet-search.js"></script>
+
+    <!-- Geolocation Javascript Library -->
+    <script
+        src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js"></script>
+
+    <!-- Leaflet Mouse Position JavaScript Library -->
+    <script src="assets/plugins/leaflet-mouseposition/L.Control.MousePosition.js"></script>
+
+    <!-- Leaflet Measure JavaScript Library -->
+    <script src="assets/plugins/leaflet-measure/leaflet-measure.js"></script>
+
+    <!-- EasyPrint JavaScript Library -->
+    <script src="assets/plugins/leaflet-easyprint/leaflet.easyPrint.js"></script>
+
+    <!-- Marker Cluster -->
+    <script src="assets/plugins/leaflet-markercluster/leaflet.markercluster.js"></script>
+    <script src="assets/plugins/leaflet-markercluster/leaflet.markercluster-src.js"></script>
+
+    <!-- Routing -->
+    <script src="assets/plugins/leaflet-routing/leaflet-routing-machine.js"></script>
+    <script src="assets/plugins/leaflet-routing/leaflet-routing-machine.min.js"></script>
+
+    <!-- Custom JS for Leaflet Map -->
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([-2.5, 117], 5);
+
+        // Add a tile layer (OpenStreetMap)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        var title = new L.Control();
+        title.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'info');
+            this.update();
+            return this._div;
+        };
+        title.update = function () {
+            this._div.innerHTML = '<h4></h4>';
+        };
+        title.addTo(map);
+
+        /* Tile Basemap */// (note: pilihan basemap diakses pada https://leaflet-extras.github.io/leaflet-providers/preview/) 
+        var basemap1 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | <a href="DIVSIG UGM" target="_blank">DIVSIG UGM</a>' //menambahkan nama
+        });
+
+        var Jawg_Terrain = L.tileLayer('https://{s}.tile.jawg.io/jawg-terrain/{z}/{x}/{y}{r}.png?access-token={accessToken}', {
+            attribution: '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            minZoom: 0,
+            maxZoom: 22,
+            subdomains: 'abcd',
+            accessToken: '<your accessToken>'
+        });
+
+        var Thunderforest_Outdoors = L.tileLayer('https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey={apikey}', {
+            attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            apikey: '<your apikey>',
+            maxZoom: 22
+        });
+
+        var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+        });
+
+        basemap1.addTo(map);
+
+        /* Control Layer */
+        var baseMaps = {
+            "OpenStreetMap": basemap1,
+            "Jawg_Terrain": Jawg_Terrain,
+            "Thunderforest_Outdoors": Thunderforest_Outdoors,
+            "Esri_WorldTopoMap": Esri_WorldTopoMap
+        };
+
+        L.control.layers(baseMaps).addTo(map);
+
+        $.getJSON("wfsgeoserver1.php", function (data) {
+            wfsgeoserver1.addData(data);
+            map.addLayer(wfsgeoserver1);
+            map.fitBounds(wfsgeoserver1.getBounds());
+        });
+
+        var wfsgeoserver1; // Defined only once outside the $.getJSON block
+
+        $.getJSON("wfsgeoserver1.php", function (data) {
+            wfsgeoserver1 = L.geoJson(data, {
+                pointToLayer: function (feature, latlng) {
+                    var iconUrl;
+
+                    // if (feature.properties.kategori === "observatorium") {
+                    //     iconUrl = "assets/img/marker/1.png";
+                    // } else if (feature.properties.kategori === "planetarium") {
+                    //     iconUrl = "assets/img/marker/2.png";
+                    // } else if (feature.properties.kategori === "lokasi astrofotografi") {
+                    //     iconUrl = "assets/img/marker/3.png";
+                    // }
+
+                    return L.marker(latlng, {
+                        icon: L.icon({
+                            iconUrl: iconUrl,
+                            iconSize: [24, 24],
+                            iconAnchor: [12, 24],
+                            popupAnchor: [0, -24],
+                            tooltipAnchor: [12, -12]
+                        })
+                    });
+                },
+                onEachFeature: function (feature, layer) {
+                    var content = "Nama : " + feature.properties.Name +
+                        "<br>" + "Lintang : " + feature.properties.latitude + "<br>" +
+                        "Bujur : " + feature.properties.longitude + "<br>" +
+                        "Alamat : " + feature.properties.alamat;
+
+                    layer.bindPopup(content);
+
+                    layer.on({
+                        click: function (e) {
+                            layer.openPopup();
+                        },
+                        mouseover: function (e) {
+                            layer.bindTooltip(feature.properties.Name).openTooltip();
+                        },
+                        mouseout: function (e) {
+                            layer.closeTooltip();
+                        }
+                    });
+                }
+            });
+
+            wfsgeoserver1.addTo(map);
+            map.fitBounds(wfsgeoserver1.getBounds());
+        });
+
+
+        L.Control.Legend = L.Control.extend({
+            onAdd: function (map) {
+                var img = L.DomUtil.create('img');
+                img.src = 'assets/img/legend/Legenda.png';
+                img.style.width = '150px';
+                return img;
+            }
+        });
+
+        L.control.Legend = function (opts) {
+            return new L.Control.Legend(opts);
+        }
+
+        L.control.Legend({ position: 'bottomleft' }).addTo(map);
+        //Image watermark//
+        L.Control.Watermark = L.Control.extend({
+            onAdd: function (map) {
+                var img = L.DomUtil.create('img');
+                img.src = 'assets/img/logo/logoSIG.png';
+                img.style.width = '70px';
+                return img;
+            }
+        });
+
+        L.control.Watermark = function (opts) {
+            return new L.Control.Watermark(opts);
+        }
+        L.control.Watermark({ position: 'bottomleft' }).addTo(map);
+        // Plugin Search //
+        var searchControl = new L.Control.Search({
+            position: "topleft",
+            layer: wfsgeoserver1, //Nama variabel layer
+            propertyName: "kecamatan", //Field untuk pencarian
+            marker: false,
+            moveToLocation: function (latlng, title, map) {
+                var zoom = map.getBoundsZoom(latlng.layer.getBounds());
+                map.setView(latlng, zoom);
+            },
+        });
+        searchControl
+            .on("search:locationfound", function (e) {
+                e.layer.setStyle({
+                    fillColor: "#ffff00",
+                    color: "#0000ff",
+                });
+            })
+            .on("search:collapse", function (e) {
+                featuresLayer.eachLayer(function (layer) {
+                    featuresLayer.resetStyle(layer);
+                });
+            });
+        map.addControl(searchControl);
+
+        /*Plugin Geolocation */
+        var locateControl = L.control
+            .locate({
+                position: "topright",
+                drawCircle: true,
+                follow: true,
+                setView: true,
+                keepCurrentZoomLevel: false,
+                markerStyle: {
+                    weight: 1,
+                    opacity: 0.8,
+                    fillOpacity: 0.8,
+                },
+                circleStyle: {
+                    weight: 1,
+                    clickable: false,
+                },
+                icon: "fas fa-crosshairs",
+                metric: true,
+                strings: {
+                    title: "Click for Your Location",
+                    popup: "You're here. Accuracy {distance} {unit}",
+                    outsideMapBoundsMsg: "Not available",
+                },
+                locateOptions: {
+                    maxZoom: 16,
+                    watch: true,
+                    enableHighAccuracy: true,
+                    maximumAge: 10000,
+                    timeout: 10000,
+                },
+            })
+            .addTo(map);
+
+        /*Plugin Mouse Position Coordinate */
+        L.control.mousePosition({ position: "bottomright", separator: ",", prefix: "Titik Koordinat: " }).addTo(map);
+
+        /*Plugin EasyPrint */
+        L.easyPrint({
+            title: "Print",
+            position: "topright",
+        }).addTo(map);
+
+    </script>
+
+</body>
+
+</html>
