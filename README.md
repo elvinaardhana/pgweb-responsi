@@ -1,4 +1,4 @@
-![image](https://github.com/elvinaardhana/pgweb-responsi/assets/121331274/db146e01-5efb-4f5e-93ce-037e47ca7811)# pgweb-responsi
+# pgweb-responsi
 Myth Guide : Exploring the Heritage of Indonesian Folklore
 
 
@@ -16,7 +16,7 @@ Sumber data:
    
 Tangkapan layar komponen penting produk:
 1. Landing page:
-   ![Logo Proyek](.foto/landing.jpg)
+   ![image](.foto/landing.jpg)
    
 
 
