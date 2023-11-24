@@ -16,7 +16,7 @@ Sumber data:
    
 Tangkapan layar komponen penting produk:
 1. Landing page:
-   ![image](.foto/landing.jpg)
+   ![image](foto/landing.jpeg)
    
 
 
